@@ -1,69 +1,43 @@
 # Contributing to Better Skill Creator
 
-Thank you for your interest in contributing! 🎉
+Thanks for contributing.
 
-## How to Contribute
+## What to improve
 
-### Reporting Bugs
+Useful contributions include:
+- clearer skill-authoring guidance
+- better `project.skill.md` patterns
+- stronger validation logic
+- tighter examples of scripts/tests/self-healing
+- documentation fixes where philosophy or terminology is off
 
-1. Check if the bug has already been reported in [Issues](https://github.com/zenchantlive/better-skill-creator/issues)
-2. If not, create a new issue with:
-   - Clear title and description
-   - Steps to reproduce
-   - Expected vs actual behavior
-   - Your environment (OS, Python version, etc.)
+## Ground rules
 
-### Suggesting Features
+1. Keep the distinction between **global skill** and **project-local context** clear.
+2. Do not reintroduce scaffold-first workflows as the main model.
+3. Prefer small, explicit examples over hype or abstraction.
+4. If you add scripts, add or update tests.
+5. If you add self-healing, keep it narrow and low-risk.
 
-1. Open an issue with the `enhancement` label
-2. Describe the feature and why it would be useful
-3. Include examples if possible
-
-### Pull Requests
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Make your changes
-4. Test your changes thoroughly
-5. Commit with clear messages (`git commit -m 'Add amazing feature'`)
-6. Push to your branch (`git push origin feature/amazing-feature`)
-7. Open a Pull Request
-
-## Development Setup
+## Development
 
 ```bash
-# Clone your fork
-git clone https://github.com/YOUR_USERNAME/better-skill-creator.git
 cd better-skill-creator
-
-# Create a virtual environment (optional)
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Test the scripts
-python scripts/init_skill.py test-skill --path ./test-output
-python scripts/quick_validate.py ./test-output/test-skill
+python scripts/quick_validate.py .
 ```
 
-## Code Style
+If you modify validation or packaging logic, test those changes directly.
 
-- Follow PEP 8 for Python code
-- Use clear, descriptive variable names
-- Add docstrings to functions
-- Keep functions focused and small
+## Pull requests
 
-## Testing
+Please explain:
+- what changed
+- why it improves the repo
+- whether it changes the skill philosophy, examples, or validator behavior
 
-Before submitting a PR:
+## Issues
 
-1. Run any existing tests
-2. Test your changes manually
-3. Ensure scripts work across different environments
-
-## Questions?
-
-Feel free to open an issue for any questions or discussions!
-
----
-
-Thank you for helping make Better Skill Creator better! 💪
+If reporting a problem, include:
+- the file(s) involved
+- the confusing or incorrect behavior
+- what you expected instead

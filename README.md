@@ -1,295 +1,274 @@
 <div align="center">
 
-# 🛠️ Better Skill Creator
+# Better Skill Creator
 
-**The definitive framework for building AI agent skills that scale**
+**A framework for authoring better skills for AI agents**
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.txt)
 [![GitHub release](https://img.shields.io/github/v/release/zenchantlive/better-skill-creator.svg)](https://github.com/zenchantlive/better-skill-creator/releases)
-[![GitHub stars](https://img.shields.io/github/stars/zenchantlive/better-skill-creator.svg)](https://github.com/zenchantlive/better-skill-creator/stargazers)
 [![GitHub issues](https://img.shields.io/github/issues/zenchantlive/better-skill-creator.svg)](https://github.com/zenchantlive/better-skill-creator/issues)
 
-*Transform your AI agent from general-purpose to domain-expert with modular, reusable skill packages.*
-
-[Quick Start](#-quick-start) • [Documentation](#-documentation) • [Examples](#-examples) • [Contributing](#-contributing)
+Skills help agents do work. They are reusable operational guidance, references, and supporting resources — not something that "turns an agent into a skill."
 
 </div>
 
 ---
 
-## 🎯 Why Better Skill Creator?
+## What this repo is for
 
-AI agents are powerful, but they lack **procedural knowledge** — the "how-to" wisdom that comes from experience. Skills bridge that gap.
+Better Skill Creator helps an agent or skill author build skills that are:
 
-**Better Skill Creator** gives you the framework to build skills that are:
-
-| Feature | Description |
-|---------|-------------|
-| 🧠 **Context-Aware** | Progressive disclosure keeps context windows lean |
-| 🔄 **Self-Healing** | Built-in test and repair mechanisms |
-| 📦 **Portable** | Package, share, and deploy skills across environments |
-| 🎛️ **Configurable** | Dynamic architecture adapts to any project |
-| ✅ **Validated** | Automated quality checks before deployment |
+- **discoverable** — the agent can tell when to use the skill
+- **reusable** — generic guidance stays in the skill
+- **project-aware** — local setup lives in `project.skill.md`
+- **testable** — scripts and workflow assumptions can be validated
+- **portable** — the same global skill can be used across many repositories
 
 ---
 
-## 📦 What's Inside
+## Core idea: keep global and local separate
 
+A reusable skill should stay reusable.
+
+Do **not** edit the global skill for one repository's local paths, commands, or constraints.
+
+Instead:
+
+- the skill ships `project.skill.md.template`
+- a setup agent or user creates `project.skill.md` in the **project root**
+- future agents read `project.skill.md` before doing substantial work
+
+This gives you:
+- a stable global skill
+- a project-local context file
+- clean reuse across environments
+
+---
+
+## Recommended architecture levels
+
+Not every skill needs every folder.
+
+### 1. Minimal skill
+
+```text
+my-skill/
+└── SKILL.md
 ```
-better-skill-creator/
-├── SKILL.md                    # Core documentation
-├── scripts/
-│   ├── init_skill.py           # Scaffold new skills instantly
-│   ├── package_skill.py        # Package & validate for distribution
-│   └── quick_validate.py       # Fast quality checks
+
+### 2. Reference-backed skill
+
+```text
+my-skill/
+├── SKILL.md
+├── project.skill.md.template
 └── references/
-    ├── workflows.md            # Multi-step process patterns
-    └── output-patterns.md      # Output format best practices
 ```
 
----
+### 3. Operational skill
 
-## 🚀 Quick Start
-
-### 1. Download
-
-```bash
-# Clone the repo
-git clone https://github.com/zenchantlive/better-skill-creator.git
-
-# Or download the latest release
-wget https://github.com/zenchantlive/better-skill-creator/releases/download/v1.0.0/better-skill-creator.zip
-unzip better-skill-creator.zip
-```
-
-### 2. Initialize a New Skill
-
-```bash
-python scripts/init_skill.py my-awesome-skill --path ./skills
-```
-
-This creates:
-```
-my-awesome-skill/
-├── SKILL.md          # Template with frontmatter
-├── project.md        # Environment-specific config
-├── scripts/          # Your executable tools
-├── tests/            # Paired test files
-└── self-healing/     # Auto-repair scripts
-```
-
-### 3. Build Your Skill
-
-Edit `SKILL.md` with your domain expertise, add scripts, and validate:
-
-```bash
-python scripts/package_skill.py ./skills/my-awesome-skill
-```
-
-### 4. Share
-
-The packaged `.skill` file is ready for distribution or installation.
-
----
-
-## 📖 Documentation
-
-### Core Concepts
-
-#### Dynamic Skill Architecture
-
-Skills aren't just markdown files — they're **complete packages**:
-
-- **SKILL.md** — The brain: instructions and guidance
-- **scripts/** — The hands: executable, deterministic tools
-- **references/** — The library: detailed docs loaded on demand
-- **assets/** — The toolbox: templates, images, boilerplate
-- **tests/** — The quality gate: paired with every script
-- **self-healing/** — The immune system: auto-repair when things break
-
-#### Progressive Disclosure
-
-Context is precious. Better Skill Creator uses a **three-level loading system**:
-
-1. **Metadata** — Always visible (~100 words)
-2. **SKILL.md body** — Loaded when triggered (<5k words)
-3. **References** — Loaded only when needed (unlimited)
-
-This means your agent gets exactly the information it needs, when it needs it.
-
-#### Degrees of Freedom
-
-Match specificity to fragility:
-
-| Level | Use When | Example |
-|-------|----------|---------|
-| **High** | Multiple valid approaches | Text-based instructions |
-| **Medium** | Preferred pattern exists | Pseudocode with parameters |
-| **Low** | Fragile operations, consistency critical | Specific scripts |
-
-### Scripts Reference
-
-#### `init_skill.py`
-
-Scaffold a new skill with the complete dynamic structure.
-
-```bash
-python init_skill.py <skill-name> --path <output-directory>
-```
-
-#### `package_skill.py`
-
-Validate and package a skill for distribution.
-
-```bash
-python package_skill.py <path/to/skill-folder> [output-directory]
-```
-
-Automatically validates:
-- YAML frontmatter format
-- Required fields (`name`, `description`)
-- Directory structure
-- File organization
-
-#### `quick_validate.py`
-
-Fast validation without packaging.
-
-```bash
-python quick_validate.py <path/to/skill-folder>
-```
-
----
-
-## 💡 Examples
-
-### Minimal Skill (Technique)
-
-```
-condition-based-waiting/
-└── SKILL.md      # Everything inline, <200 words
-```
-
-### Skill with Scripts
-
-```
-pdf-editor/
+```text
+my-skill/
 ├── SKILL.md
-└── scripts/
-    ├── rotate_pdf.py
-    └── extract_text.py
-```
-
-### Full Dynamic Skill
-
-```
-bigquery-analytics/
-├── SKILL.md
-├── project.md
+├── project.skill.md.template
+├── references/
 ├── scripts/
-│   ├── query_runner.py
-│   └── schema_inspector.py
+└── tests/
+```
+
+### 4. Resilient operational skill
+
+```text
+my-skill/
+├── SKILL.md
+├── project.skill.md.template
+├── references/
+├── scripts/
 ├── tests/
-│   └── test_query_runner.py
-├── self-healing/
-│   └── heal_auth.py
-└── references/
-    ├── finance_schema.md
-    └── marketing_schema.md
+└── self-healing/
+```
+
+See [`references/skill-architecture-levels.md`](references/skill-architecture-levels.md).
+
+---
+
+## What belongs where
+
+### `SKILL.md`
+Use for:
+- trigger conditions
+- core workflow
+- instructions for when to read references
+- instructions to look for `project.skill.md` when local context matters
+
+### `project.skill.md.template`
+Use for:
+- a template the setup agent can copy into the project as `project.skill.md`
+- placeholders for exact commands, paths, constraints, and validation rules
+
+### `project.skill.md`
+This file lives in the **project**, not in the skill.
+
+Use it for:
+- exact local commands
+- repo paths
+- output locations
+- files that must not be modified
+- local guardrails and conventions
+- validation requirements
+- local examples
+
+### `references/`
+Use for heavier or conditional documentation.
+
+### `scripts/`
+Use for deterministic repeated operations.
+
+### `tests/`
+Use for script validation and smoke tests.
+
+### `self-healing/`
+Use only for narrow, low-risk remediation.
+
+---
+
+## Repo contents
+
+```text
+better-skill-creator/
+├── SKILL.md
+├── project.skill.md.template
+├── references/
+│   ├── behavioral-validation-checklist.md
+│   ├── completion-gate.md
+│   ├── description-writing.md
+│   ├── output-patterns.md
+│   ├── project-skill-context.md
+│   ├── script-test-conventions.md
+│   ├── self-healing-rules.md
+│   ├── skill-architecture-levels.md
+│   ├── skill-testing.md
+│   └── workflows.md
+├── scripts/
+│   ├── package_skill.py
+│   └── quick_validate.py
+└── examples/
+    ├── release-notes-generator-skill/
+    └── release-notes-project/
 ```
 
 ---
 
-## 🎨 Skill Design Patterns
+## How to use this repo
 
-### Pattern 1: High-Level Guide with References
+### 1. Start by thinking, not scaffolding
 
-Keep SKILL.md lean, link to details:
+A good skill should be authored deliberately by the agent or human writing it.
 
-```markdown
-## Advanced Features
+Decide:
+- what problem the skill solves
+- when it should trigger
+- whether project-local context is needed
+- whether references/scripts/tests are justified
 
-- **Form filling**: See [FORMS.md](references/FORMS.md)
-- **API reference**: See [REFERENCE.md](references/REFERENCE.md)
+### 2. Write `SKILL.md`
+
+Make the description say **when to use** the skill.
+
+Tell future agents early in the file to:
+- look for `project.skill.md` in the project root
+- create it from `project.skill.md.template` if missing
+- avoid editing the global skill for local setup
+
+### 3. Add `project.skill.md.template` if local setup matters
+
+If commands, paths, or constraints vary by repository, ship a template.
+
+### 4. Add references and scripts only when earned
+
+If a workflow is repeated or fragile, add references/scripts/tests.
+
+### 5. Validate
+
+Use:
+
+```bash
+python3 scripts/quick_validate.py <skill_directory>
+python3 scripts/package_skill.py <skill_directory> [output_directory]
 ```
 
-### Pattern 2: Domain-Specific Organization
-
-Split by domain to avoid loading irrelevant context:
-
-```
-├── SKILL.md          # Navigation only
-└── references/
-    ├── finance.md    # Revenue, billing
-    ├── sales.md      # Pipeline, opportunities
-    └── product.md    # Usage, features
-```
-
-### Pattern 3: Conditional Details
-
-Basic content inline, advanced content linked:
-
-```markdown
-## Editing Documents
-
-For simple edits, modify the XML directly.
-
-**For tracked changes**: See [REDLINING.md](REDLINING.md)
-```
+The validator is dependency-free and also catches a few structural problems such as broken SKILL.md links, stale `project.md` references, and missing script/test pairs.
 
 ---
 
-## 🤝 Contributing
+## Recommended references in this repo
 
-Contributions are welcome! Here's how to help:
-
-1. **Fork** the repository
-2. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
-3. **Commit** your changes (`git commit -m 'Add amazing feature'`)
-4. **Push** to the branch (`git push origin feature/amazing-feature`)
-5. **Open** a Pull Request
-
-### Ideas for Contributions
-
-- 🐛 Bug fixes
-- 📝 Documentation improvements
-- ✨ New script templates
-- 🧪 Additional test patterns
-- 🌐 Translations
+- [`references/project-skill-context.md`](references/project-skill-context.md)
+- [`references/skill-architecture-levels.md`](references/skill-architecture-levels.md)
+- [`references/skill-testing.md`](references/skill-testing.md)
+- [`references/script-test-conventions.md`](references/script-test-conventions.md)
+- [`references/self-healing-rules.md`](references/self-healing-rules.md)
+- [`references/behavioral-validation-checklist.md`](references/behavioral-validation-checklist.md)
+- [`references/completion-gate.md`](references/completion-gate.md)
+- [`references/description-writing.md`](references/description-writing.md)
+- [`references/workflows.md`](references/workflows.md)
+- [`references/output-patterns.md`](references/output-patterns.md)
 
 ---
 
-## 📋 Roadmap
+## Canonical example
 
-- [ ] Interactive skill wizard (CLI)
-- [ ] Skill registry/discovery system
-- [ ] Cross-agent compatibility layer
-- [ ] Visual skill builder
-- [ ] Automated skill testing framework
+The repo now includes a worked example that demonstrates the full pattern without making the example a prerequisite for understanding the framework:
 
----
+- [`examples/release-notes-generator-skill/`](examples/release-notes-generator-skill/)
+- [`examples/release-notes-project/project.skill.md`](examples/release-notes-project/project.skill.md)
 
-## 📄 License
+What it shows:
+- a reusable global skill
+- a shipped `project.skill.md.template`
+- a project-local `project.skill.md`
+- one deterministic script
+- one paired test
+- one narrow self-healing script
 
-This project is licensed under the MIT License — see the [LICENSE.txt](LICENSE.txt) file for details.
-
----
-
-## 🙏 Acknowledgments
-
-Built on principles from:
-- Anthropic's skill authoring best practices
-- Real-world AI agent development workflows
-- Community feedback and contributions
+This example is included as proof of the pattern, not as a substitute for a strong `SKILL.md`.
 
 ---
 
-<div align="center">
+## Dry-run result
 
-**[⬆ Back to Top](#-better-skill-creator)**
+Using the revised `SKILL.md` and references as the only guidance, an agent can now get to a coherent operational skill without needing a scaffold generator. The main control-plane logic lives in `SKILL.md`; references provide deeper rules; scripts and tests provide proof.
 
-Made with ❤️ for the AI agent community
+---
 
-[Star this repo](https://github.com/zenchantlive/better-skill-creator) • [Report a bug](https://github.com/zenchantlive/better-skill-creator/issues) • [Request a feature](https://github.com/zenchantlive/better-skill-creator/issues)
+## Important philosophy
 
-</div>
+This repo is intentionally **not** centered around a scaffold generator.
+
+The agent writing the skill should decide:
+- what files are actually needed
+- what belongs in the global skill
+- what belongs in project-local context
+- what is worth testing
+- whether self-healing is appropriate
+
+Templates and validation can help, but they should not replace judgment.
+
+---
+
+## Contributing
+
+Contributions are welcome, especially improvements to:
+- skill structure guidance
+- `project.skill.md` patterns
+- testing guidance
+- worked examples
+- validation logic
+
+See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+---
+
+## License
+
+MIT — see [LICENSE.txt](LICENSE.txt).

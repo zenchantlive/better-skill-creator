@@ -9,41 +9,22 @@ on:
 jobs:
   validate:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v4
-
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.11'
-
-    - name: Validate skill structure
-      run: |
-        python scripts/quick_validate.py .
-
-    - name: Test init_skill.py
-      run: |
-        python scripts/init_skill.py test-skill --path /tmp/test-output
-        ls -la /tmp/test-output/test-skill/
-
-    - name: Test package_skill.py validation
-      run: |
-        python scripts/package_skill.py /tmp/test-output/test-skill /tmp/dist || true
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate repo skill structure
+        run: python scripts/quick_validate.py .
 
   lint:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v4
-
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.11'
-
-    - name: Install linter
-      run: pip install ruff
-
-    - name: Lint Python files
-      run: ruff check scripts/ --ignore E501
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install linter
+        run: pip install ruff
+      - name: Lint Python files
+        run: ruff check scripts/ --ignore E501
