@@ -1,6 +1,6 @@
 <div align="center">
 
-# Better Skill Creator
+# 🛠️ Better Skill Creator
 
 **Framework for building project-aware, tested, reusable agent skills**
 
@@ -18,13 +18,13 @@ It focuses on four failure points common in skill systems:
 - brittle workflows with no validation path
 - failures that could be repaired safely but are left as manual cleanup
 
-## Who this is for
+## 👥 Who this is for
 
 - developers building Claude-style or agent skill systems
 - AI engineers maintaining reusable operational skills
 - teams that want project-aware, testable, maintainable skills instead of one-off prompt docs
 
-## What it includes
+## 📦 What it includes
 
 - a root authoring framework in [`SKILL.md`](SKILL.md)
 - project-local context support via [`project.skill.md.template`](project.skill.md.template)
@@ -33,7 +33,7 @@ It focuses on four failure points common in skill systems:
 - a canonical reference skill in [`reference-skills/release-notes-generator/`](reference-skills/release-notes-generator/)
 - a project-side example in [`examples/release-notes-project/`](examples/release-notes-project/)
 
-## Reference skill
+## 🧭 Reference skill
 
 The reference skill is the quickest way to inspect the output of the framework:
 
@@ -48,7 +48,7 @@ It includes:
 - a narrow self-healing script
 - a project workflow that runs against real files
 
-## Tooling
+## 🔧 Tooling
 
 ### Validate a skill
 
@@ -64,7 +64,7 @@ Checks include:
 - missing script/test pairs
 
 
-## Quick start
+## 🚀 Quick start
 
 ```bash
 git clone https://github.com/zenchantlive/better-skill-creator.git
@@ -83,7 +83,7 @@ python3 scripts/quick_validate.py reference-skills/release-notes-generator
 python3 reference-skills/release-notes-generator/tests/test_generate_release_notes.py
 ```
 
-## Project-local context
+## 🗂️ Project-local context
 
 Reusable skills should not contain repository-specific commands, paths, or constraints.
 
@@ -93,7 +93,7 @@ This repo uses:
 
 That separation keeps the reusable skill portable while allowing each project to define its own local reality.
 
-## Repository layout
+## 🧱 Repository layout
 
 ```text
 better-skill-creator/
@@ -107,7 +107,7 @@ better-skill-creator/
     └── release-notes-project/
 ```
 
-## Validation in CI
+## ✅ Validation in CI
 
 CI validates:
 - the root framework skill
@@ -116,7 +116,7 @@ CI validates:
 - the example project workflow
 - the self-healing path
 
-## Contributing
+## 🤝 Contributing
 
 Contributions are welcome for:
 - validation improvements
@@ -127,6 +127,6 @@ Contributions are welcome for:
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).
 
-## License
+## 📄 License
 
 MIT — see [LICENSE.txt](LICENSE.txt).
