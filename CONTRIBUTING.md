@@ -26,7 +26,7 @@ cd better-skill-creator
 python scripts/quick_validate.py .
 ```
 
-If you modify validation or packaging logic, test those changes directly.
+If you modify validation logic, test those changes directly.
 
 ## Pull requests
 

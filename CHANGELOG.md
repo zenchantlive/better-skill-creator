@@ -17,7 +17,6 @@ All notable changes to this project are documented here.
 
 ### Added
 - `SKILL.md`
-- `scripts/package_skill.py`
 - `scripts/quick_validate.py`
 - `references/workflows.md`
 - `references/output-patterns.md`

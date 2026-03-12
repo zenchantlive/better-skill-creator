@@ -193,9 +193,8 @@ Use this map while authoring:
 Use the shipped scripts when they reduce repeated, deterministic work:
 
 - `scripts/quick_validate.py` — fast validation of frontmatter and core structural promises
-- `scripts/package_skill.py` — validate then package a skill as a `.skill` archive
 
-If you find yourself manually re-checking the same structural conditions repeatedly, prefer strengthening these scripts rather than rewriting the checks ad hoc.
+If you find yourself manually re-checking the same structural conditions repeatedly, prefer strengthening this validator rather than rewriting the checks ad hoc.
 
 ## Reference Skill
 
