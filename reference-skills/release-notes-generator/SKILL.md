@@ -38,7 +38,7 @@ Use this skill to:
 ## Reference Map
 
 - Need the default markdown shape? Read `references/output-format.md`.
-- Need example local setup? Read `project.skill.md.template` and the paired example project file at `../release-notes-project/project.skill.md`.
+- Need example local setup? Read `project.skill.md.template` and the paired example project file at `../../examples/release-notes-project/project.skill.md`.
 
 ## Scripts
 

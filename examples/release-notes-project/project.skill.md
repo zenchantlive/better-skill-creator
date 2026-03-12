@@ -17,8 +17,8 @@
 
 ## 3. Required Commands
 
-- Generate notes: `python3 ../release-notes-generator-skill/scripts/generate_release_notes.py data/release-input.json dist/release-notes.md`
-- Validate notes: `python3 ../release-notes-generator-skill/tests/test_generate_release_notes.py`
+- Generate notes: `python3 ../../reference-skills/release-notes-generator/scripts/generate_release_notes.py data/release-input.json dist/release-notes.md`
+- Validate notes: `python3 ../../reference-skills/release-notes-generator/tests/test_generate_release_notes.py`
 
 ## 4. Inputs and Outputs
 
@@ -48,11 +48,11 @@
 ### Example 1
 - Goal: generate release notes draft
 - Files involved: `data/release-input.json`, `dist/release-notes.md`
-- Commands: `python3 ../release-notes-generator-skill/scripts/generate_release_notes.py data/release-input.json dist/release-notes.md`
+- Commands: `python3 ../../reference-skills/release-notes-generator/scripts/generate_release_notes.py data/release-input.json dist/release-notes.md`
 - Expected result: markdown file written to `dist/release-notes.md`
 
 ### Example 2
 - Goal: validate the release-notes workflow
-- Files involved: `../release-notes-generator-skill/tests/test_generate_release_notes.py`
-- Commands: `python3 ../release-notes-generator-skill/tests/test_generate_release_notes.py`
+- Files involved: `../../reference-skills/release-notes-generator/tests/test_generate_release_notes.py`
+- Commands: `python3 ../../reference-skills/release-notes-generator/tests/test_generate_release_notes.py`
 - Expected result: test prints PASS and exits 0

@@ -152,8 +152,9 @@ better-skill-creator/
 ├── scripts/
 │   ├── package_skill.py
 │   └── quick_validate.py
+├── reference-skills/
+│   └── release-notes-generator/
 └── examples/
-    ├── release-notes-generator-skill/
     └── release-notes-project/
 ```
 
@@ -216,11 +217,11 @@ The validator is dependency-free and also catches a few structural problems such
 
 ---
 
-## Canonical example
+## Reference skill
 
-The repo now includes a worked example that demonstrates the full pattern without making the example a prerequisite for understanding the framework:
+The repo includes a canonical reference skill that demonstrates the full pattern without making the reference skill a prerequisite for understanding the framework:
 
-- [`examples/release-notes-generator-skill/`](examples/release-notes-generator-skill/)
+- [`reference-skills/release-notes-generator/`](reference-skills/release-notes-generator/)
 - [`examples/release-notes-project/project.skill.md`](examples/release-notes-project/project.skill.md)
 
 What it shows:
@@ -231,7 +232,7 @@ What it shows:
 - one paired test
 - one narrow self-healing script
 
-This example is included as proof of the pattern, not as a substitute for a strong `SKILL.md`.
+This reference skill is included as proof and calibration, not as a substitute for a strong root `SKILL.md`.
 
 ---
 

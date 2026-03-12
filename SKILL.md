@@ -197,6 +197,19 @@ Use the shipped scripts when they reduce repeated, deterministic work:
 
 If you find yourself manually re-checking the same structural conditions repeatedly, prefer strengthening these scripts rather than rewriting the checks ad hoc.
 
+## Reference Skill
+
+See `reference-skills/release-notes-generator/` for a canonical reference skill authored using this framework.
+
+Use it as a model implementation of:
+- a reusable global skill
+- a shipped `project.skill.md.template`
+- references routed from `SKILL.md`
+- a deterministic script with a paired test
+- narrow self-healing
+
+It is a specimen of the framework, not a substitute for the framework.
+
 ## Red Flags — STOP
 
 Stop and correct course if you are thinking:
