@@ -6,7 +6,7 @@ All notable changes to this project are documented here.
 
 ### Changed
 - Reframed the repo around **agent-authored skills**, not scaffold-first generation
-- Added `project.skill.md.template` as the project-local context pattern
+- Added `project.skill.template.md` as the project-local context pattern
 - Added references for project-local context, architecture levels, testing, and description writing
 - Reworked `SKILL.md` and `README.md` around global-vs-local separation
 

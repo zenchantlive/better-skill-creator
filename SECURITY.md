@@ -36,4 +36,4 @@ We support responsible disclosure. We will not take legal action against securit
 - Do not degrade system performance
 - Report vulnerabilities promptly
 
-Thank you for helping keep Better Skill Creator secure! 🛡️
+Thank you for helping keep Writing Better Skills secure! 🛡️

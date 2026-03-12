@@ -24,7 +24,7 @@ What actually happened.
 ## Environment
 - OS: [e.g. macOS, Ubuntu, Windows]
 - Python version: [e.g. 3.11]
-- Better Skill Creator version: [e.g. 1.0.0]
+- Writing Better Skills version: [e.g. 1.0.0]
 
 ## Screenshots/Logs
 If applicable, add screenshots or error logs to help explain your problem.

@@ -118,11 +118,11 @@ def validate_skill(skill_path: str | Path):
 
     issues: list[str] = []
 
-    if "project.skill.md.template" in text and not (skill_path / "project.skill.md.template").exists():
-        issues.append("SKILL.md references `project.skill.md.template` but the file is missing")
+    if "project.skill.template.md" in text and not (skill_path / "project.skill.template.md").exists():
+        issues.append("SKILL.md references `project.skill.template.md` but the file is missing")
 
     if "project.md" in text:
-        issues.append("Found `project.md` reference. Use `project.skill.md.template` / `project.skill.md` instead")
+        issues.append("Found `project.md` reference. Use `project.skill.template.md` / `project.skill.md` instead")
 
     for ref in referenced_markdown_links(skill_path, text):
         if not (skill_path / ref).exists():

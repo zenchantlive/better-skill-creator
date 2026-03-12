@@ -1,10 +1,10 @@
 ---
-name: better-skill-creator
+name: writing-better-skills
 description: Use when creating or improving a skill for an AI agent, especially when the skill needs strong trigger wording, project-local context, references, scripts, tests, self-healing rules, or a completion gate another agent could follow without guessing.
 license: Complete terms in LICENSE.txt
 ---
 
-# Better Skill Creator
+# Writing Better Skills
 
 Create better skills for agents.
 
@@ -51,7 +51,7 @@ Before doing substantial work with a skill in a repository:
 
 1. Look for `project.skill.md` in the **project root**.
 2. If it exists, read it before taking action.
-3. If it does not exist and local context is needed, create it from `project.skill.md.template`.
+3. If it does not exist and local context is needed, create it from `project.skill.template.md`.
 4. Put environment-specific paths, commands, constraints, and conventions in `project.skill.md`, not in the global skill.
 5. Treat `project.skill.md` as overriding generic guidance in `SKILL.md` when local details differ.
 
@@ -103,7 +103,7 @@ my-skill/
 ```text
 my-skill/
 ├── SKILL.md
-├── project.skill.md.template
+├── project.skill.template.md
 └── references/
 ```
 
@@ -111,7 +111,7 @@ my-skill/
 ```text
 my-skill/
 ├── SKILL.md
-├── project.skill.md.template
+├── project.skill.template.md
 ├── references/
 ├── scripts/
 └── tests/
@@ -121,7 +121,7 @@ my-skill/
 ```text
 my-skill/
 ├── SKILL.md
-├── project.skill.md.template
+├── project.skill.template.md
 ├── references/
 ├── scripts/
 ├── tests/
@@ -141,7 +141,7 @@ Decide:
 - what must remain project-local
 - whether local context actually matters
 
-If local commands, paths, outputs, or constraints vary by project, plan for `project.skill.md.template`.
+If local commands, paths, outputs, or constraints vary by project, plan for `project.skill.template.md`.
 
 ### Phase 2: Define trigger and routing
 Write the frontmatter and top of `SKILL.md`.
@@ -202,7 +202,7 @@ See `reference-skills/release-notes-generator/` for a canonical reference skill 
 
 Use it as a model implementation of:
 - a reusable global skill
-- a shipped `project.skill.md.template`
+- a shipped `project.skill.template.md`
 - references routed from `SKILL.md`
 - a deterministic script with a paired test
 - narrow self-healing

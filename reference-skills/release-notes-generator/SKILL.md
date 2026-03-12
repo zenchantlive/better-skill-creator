@@ -23,7 +23,7 @@ Before doing substantial work in a repository:
 
 1. Look for `project.skill.md` in the project root.
 2. If it exists, read it before taking action.
-3. If it does not exist and local context is needed, create it from `project.skill.md.template`.
+3. If it does not exist and local context is needed, create it from `project.skill.template.md`.
 4. Put repository-specific commands, paths, output locations, and constraints in `project.skill.md`, not in this global skill.
 5. Treat `project.skill.md` as overriding generic guidance here when local details differ.
 
@@ -38,7 +38,7 @@ Use this skill to:
 ## Reference Map
 
 - Need the default markdown shape? Read `references/output-format.md`.
-- Need example local setup? Read `project.skill.md.template` and the paired example project file at `../../examples/release-notes-project/project.skill.md`.
+- Need example local setup? Read `project.skill.template.md` and the paired example project file at `../../examples/release-notes-project/project.skill.md`.
 
 ## Scripts
 
@@ -58,7 +58,7 @@ Use this skill to:
 
 1. Read `project.skill.md` in the project root if present.
 2. Determine the input file path, output path, and required sections from project-local context.
-3. If local context is missing, create `project.skill.md` from `project.skill.md.template` before guessing.
+3. If local context is missing, create `project.skill.md` from `project.skill.template.md` before guessing.
 4. Run `scripts/generate_release_notes.py <input.json> <output.md>`.
 5. Validate with `tests/test_generate_release_notes.py` or equivalent project-specific verification.
 6. If the generator fails because the output directory does not exist, run `self-healing/heal_output_dir.py <output-dir>` and retry once.

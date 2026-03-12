@@ -17,7 +17,7 @@ Use it when a skill needs environment-specific facts such as:
 Do not edit a reusable global skill every time a new repository needs local setup. That contaminates the shared skill with assumptions that only apply in one project.
 
 Instead:
-- the skill ships `project.skill.md.template`
+- the skill ships `project.skill.template.md`
 - a setup agent or user creates `project.skill.md` in the project root
 - later agents read `project.skill.md` first when local context matters
 
@@ -56,7 +56,7 @@ Avoid:
 If the skill depends on local context:
 1. look for `project.skill.md` in the project root
 2. read it before substantial work
-3. if missing, create it from `project.skill.md.template`
+3. if missing, create it from `project.skill.template.md`
 4. do not guess when exact local details should be documented
 
 ## Good signs

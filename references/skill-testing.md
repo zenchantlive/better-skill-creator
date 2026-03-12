@@ -34,7 +34,7 @@ Questions to test:
 ### Scenario A: missing project-local context
 Expected behavior:
 - agent checks for `project.skill.md`
-- if missing, it creates one from `project.skill.md.template`
+- if missing, it creates one from `project.skill.template.md`
 - it does not guess local paths/commands unnecessarily
 
 ### Scenario B: local override exists

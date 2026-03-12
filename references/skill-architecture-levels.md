@@ -23,7 +23,7 @@ Use when the skill needs conditional or heavy docs.
 ```text
 my-skill/
 ├── SKILL.md
-├── project.skill.md.template
+├── project.skill.template.md
 └── references/
 ```
 
@@ -39,7 +39,7 @@ Use when deterministic repeated operations should be scripted.
 ```text
 my-skill/
 ├── SKILL.md
-├── project.skill.md.template
+├── project.skill.template.md
 ├── references/
 ├── scripts/
 └── tests/
@@ -57,7 +57,7 @@ Use when a narrow class of common failures can be remediated safely.
 ```text
 my-skill/
 ├── SKILL.md
-├── project.skill.md.template
+├── project.skill.template.md
 ├── references/
 ├── scripts/
 ├── tests/

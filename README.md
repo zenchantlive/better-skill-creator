@@ -1,16 +1,16 @@
 <div align="center">
 
-# 🛠️ Better Skill Creator
+# 🛠️ Writing Better Skills
 
 **Framework for building project-aware, tested, reusable agent skills**
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.txt)
-[![GitHub release](https://img.shields.io/github/v/release/zenchantlive/better-skill-creator.svg)](https://github.com/zenchantlive/better-skill-creator/releases)
-[![GitHub issues](https://img.shields.io/github/issues/zenchantlive/better-skill-creator.svg)](https://github.com/zenchantlive/better-skill-creator/issues)
+[![GitHub release](https://img.shields.io/github/v/release/zenchantlive/writing-better-skills.svg)](https://github.com/zenchantlive/writing-better-skills/releases)
+[![GitHub issues](https://img.shields.io/github/issues/zenchantlive/writing-better-skills.svg)](https://github.com/zenchantlive/writing-better-skills/issues)
 
 </div>
 
-Better Skill Creator is a framework for authoring agent skills that hold up across repositories and repeated use.
+Writing Better Skills is a framework for authoring agent skills that hold up across repositories and repeated use.
 
 It focuses on four failure points common in skill systems:
 - project-specific assumptions leaking into reusable skills
@@ -27,7 +27,7 @@ It focuses on four failure points common in skill systems:
 ## 📦 What it includes
 
 - a root authoring framework in [`SKILL.md`](SKILL.md)
-- project-local context support via [`project.skill.md.template`](project.skill.md.template)
+- project-local context support via [`project.skill.template.md`](project.skill.template.md)
 - validation tooling in [`scripts/`](scripts/)
 - supporting references in [`references/`](references/)
 - a canonical reference skill in [`reference-skills/release-notes-generator/`](reference-skills/release-notes-generator/)
@@ -42,7 +42,7 @@ The reference skill is the quickest way to inspect the output of the framework:
 
 It includes:
 - a production-style `SKILL.md`
-- project-local context via `project.skill.md.template`
+- project-local context via `project.skill.template.md`
 - a deterministic script
 - a paired test
 - a narrow self-healing script
@@ -60,15 +60,15 @@ Checks include:
 - frontmatter validity
 - broken `SKILL.md` links
 - stale `project.md` references
-- missing `project.skill.md.template`
+- missing `project.skill.template.md`
 - missing script/test pairs
 
 
 ## 🚀 Quick start
 
 ```bash
-git clone https://github.com/zenchantlive/better-skill-creator.git
-cd better-skill-creator
+git clone https://github.com/zenchantlive/writing-better-skills.git
+cd writing-better-skills
 
 # inspect the reference skill
 ls reference-skills/release-notes-generator
@@ -88,7 +88,7 @@ python3 reference-skills/release-notes-generator/tests/test_generate_release_not
 Reusable skills should not contain repository-specific commands, paths, or constraints.
 
 This repo uses:
-- `project.skill.md.template` inside the skill
+- `project.skill.template.md` inside the skill
 - `project.skill.md` inside the project
 
 That separation keeps the reusable skill portable while allowing each project to define its own local reality.
@@ -96,9 +96,9 @@ That separation keeps the reusable skill portable while allowing each project to
 ## 🧱 Repository layout
 
 ```text
-better-skill-creator/
+writing-better-skills/
 ├── SKILL.md
-├── project.skill.md.template
+├── project.skill.template.md
 ├── references/
 ├── scripts/
 ├── reference-skills/

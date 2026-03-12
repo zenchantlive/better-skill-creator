@@ -1,4 +1,4 @@
-# Contributing to Better Skill Creator
+# Contributing to Writing Better Skills
 
 Thanks for contributing.
 
@@ -22,7 +22,7 @@ Useful contributions include:
 ## Development
 
 ```bash
-cd better-skill-creator
+cd writing-better-skills
 python scripts/quick_validate.py .
 ```
 
