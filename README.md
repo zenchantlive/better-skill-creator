@@ -2,82 +2,62 @@
 
 # Better Skill Creator
 
-**A framework for authoring better skills for AI agents**
-
-*Treating Agent Skills like Production Applications*
+**Treat Agent Skills like Production Applications**
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.txt)
 [![GitHub release](https://img.shields.io/github/v/release/zenchantlive/better-skill-creator.svg)](https://github.com/zenchantlive/better-skill-creator/releases)
 [![GitHub issues](https://img.shields.io/github/issues/zenchantlive/better-skill-creator.svg)](https://github.com/zenchantlive/better-skill-creator/issues)
 
+*A framework for building project-aware, rigorously tested, self-healing skills that can survive real operational use.*
 
 </div>
 
 ---
 
-## What this repo is for
+## Why this exists
 
-Better Skill Creator helps an agent or skill author build skills that are:
+Most skills are written like notes.
 
-- **discoverable** — the agent can tell when to use the skill
-- **reusable** — generic guidance stays in the skill
-- **project-aware** — local setup lives in `project.skill.md`
-- **testable** — scripts and workflow assumptions can be validated
-- **portable** — the same global skill can be used across many repositories
+The good ones behave more like software.
 
----
+They know when to activate. They route an agent through the right references. They carry scripts for deterministic work. They prove themselves with tests. They stay reusable across repositories without leaking local assumptions into the global artifact. And when the failure is obvious and safe to repair, they can heal cleanly instead of collapsing.
 
-## Core idea: keep global and local separate
-
-A reusable skill should stay reusable.
-
-Do **not** edit the global skill for one repository's local paths, commands, or constraints.
-
-Instead:
-
-- the skill ships `project.skill.md.template`
-- a setup agent or user creates `project.skill.md` in the **project root**
-- future agents read `project.skill.md` before doing substantial work
-
-This gives you:
-- a stable global skill
-- a project-local context file
-- clean reuse across environments
+That is the standard this repo is built around.
 
 ---
 
-## Recommended architecture levels
+## The philosophy
 
-Not every skill needs every folder.
+A powerful skill should feel like a small production system:
 
-### 1. Minimal skill
+- **Project-aware** — the skill stays reusable, while local commands, paths, and constraints live in project context
+- **Rigorously tested** — shipped scripts and critical workflow assumptions get validated, not merely described
+- **Self-healing when safe** — narrow, low-risk failures can be repaired automatically; ambiguous ones must stop and surface
+- **Operationally reusable** — the same skill can move across repositories without dragging stale assumptions behind it
+- **Usable by another agent** — not just readable, but navigable, actionable, and finishable without guesswork
 
-```text
-my-skill/
-└── SKILL.md
-```
+This repo is about building skills with that level of seriousness.
 
-### 2. Reference-backed skill
+---
 
-```text
-my-skill/
-├── SKILL.md
-├── project.skill.md.template
-└── references/
-```
+## What Better Skill Creator helps you build
 
-### 3. Operational skill
+Not every skill needs every moving part.
 
-```text
-my-skill/
-├── SKILL.md
-├── project.skill.md.template
-├── references/
-├── scripts/
-└── tests/
-```
+But when the problem demands it, this framework supports skills with:
 
-### 4. Resilient operational skill
+- a strong `SKILL.md` that acts as the control plane
+- modular `references/` for deeper guidance
+- deterministic `scripts/` for repeated operations
+- `tests/` that prove those scripts and workflows hold up
+- `self-healing/` for narrow remediation paths
+- `project.skill.md.template` so project-specific reality lives in the project, not the reusable skill
+
+Think of it as an architecture for turning fragile prompt-docs into durable operational artifacts.
+
+---
+
+## The shape of a serious skill
 
 ```text
 my-skill/
@@ -89,51 +69,47 @@ my-skill/
 └── self-healing/
 ```
 
-See [`references/skill-architecture-levels.md`](references/skill-architecture-levels.md).
+Not every skill needs the full stack.
+
+Some deserve to stay lean. Others need the full machinery.
+
+This repo helps an agent decide the difference instead of cargo-culting structure for its own sake.
 
 ---
 
-## What belongs where
+## The backbone of the system
 
-### `SKILL.md`
-Use for:
-- trigger conditions
-- core workflow
-- instructions for when to read references
-- instructions to look for `project.skill.md` when local context matters
+### 1. `SKILL.md` is the control plane
+It should tell an agent:
+- when the skill applies
+- what laws and stop conditions govern it
+- which references matter next
+- which scripts should be used instead of re-derived
+- what completion actually means
 
-### `project.skill.md.template`
-Use for:
-- a template the setup agent can copy into the project as `project.skill.md`
-- placeholders for exact commands, paths, constraints, and validation rules
+### 2. `project.skill.md` keeps local reality where it belongs
+Reusable skills should not be stained with one repo’s paths, commands, and constraints.
 
-### `project.skill.md`
-This file lives in the **project**, not in the skill.
+That is why this repo uses:
+- `project.skill.md.template` in the skill
+- `project.skill.md` in the project
 
-Use it for:
-- exact local commands
-- repo paths
-- output locations
-- files that must not be modified
-- local guardrails and conventions
-- validation requirements
-- local examples
+The skill stays portable. The project keeps its own truth.
 
-### `references/`
-Use for heavier or conditional documentation.
+### 3. Scripts deserve proof
+If a skill ships executable behavior, it should be validated like executable behavior.
 
-### `scripts/`
-Use for deterministic repeated operations.
+Tests are not decorative. They are the difference between “documented” and “trusted.”
 
-### `tests/`
-Use for script validation and smoke tests.
+### 4. Self-healing is a scalpel, not a sledgehammer
+A missing output directory? Fine.
+A broad rewrite because something “probably” broke? Absolutely not.
 
-### `self-healing/`
-Use only for narrow, low-risk remediation.
+This repo treats self-healing as constrained remediation, not magical cleanup.
 
 ---
 
-## Repo contents
+## What’s in this repo
 
 ```text
 better-skill-creator/
@@ -161,49 +137,52 @@ better-skill-creator/
 
 ---
 
-## How to use this repo
+## The reference skill
 
-### 1. Start by thinking, not scaffolding
+This repo includes a canonical reference skill:
 
-A good skill should be authored deliberately by the agent or human writing it.
+- [`reference-skills/release-notes-generator/`](reference-skills/release-notes-generator/)
 
-Decide:
-- what problem the skill solves
-- when it should trigger
-- whether project-local context is needed
-- whether references/scripts/tests are justified
+And a paired project context example:
 
-### 2. Write `SKILL.md`
+- [`examples/release-notes-project/project.skill.md`](examples/release-notes-project/project.skill.md)
 
-Make the description say **when to use** the skill.
+It demonstrates the full pattern in motion:
+- a law-driven `SKILL.md`
+- project-local context
+- deterministic scripting
+- paired tests
+- narrow self-healing
+- real validation from a project-side workflow
 
-Tell future agents early in the file to:
-- look for `project.skill.md` in the project root
-- create it from `project.skill.md.template` if missing
-- avoid editing the global skill for local setup
+It exists as proof and calibration — a living specimen of the framework.
 
-### 3. Add `project.skill.md.template` if local setup matters
+---
 
-If commands, paths, or constraints vary by repository, ship a template.
+## Validation and packaging
 
-### 4. Add references and scripts only when earned
-
-If a workflow is repeated or fragile, add references/scripts/tests.
-
-### 5. Validate
-
-Use:
+Use the included tooling to keep skills honest:
 
 ```bash
 python3 scripts/quick_validate.py <skill_directory>
 python3 scripts/package_skill.py <skill_directory> [output_directory]
 ```
 
-The validator is dependency-free and also catches a few structural problems such as broken SKILL.md links, stale `project.md` references, and missing script/test pairs.
+The validator checks core frontmatter quality and structural promises such as:
+- broken `SKILL.md` links
+- stale `project.md` references
+- missing `project.skill.md.template`
+- missing script/test pairs
+
+The packager validates first, then produces a distributable `.skill` archive.
 
 ---
 
-## Recommended references in this repo
+## The deeper references
+
+This repo is intentionally modular. The root skill routes agents into the right reference at the right moment.
+
+Key references include:
 
 - [`references/project-skill-context.md`](references/project-skill-context.md)
 - [`references/skill-architecture-levels.md`](references/skill-architecture-levels.md)
@@ -213,59 +192,27 @@ The validator is dependency-free and also catches a few structural problems such
 - [`references/behavioral-validation-checklist.md`](references/behavioral-validation-checklist.md)
 - [`references/completion-gate.md`](references/completion-gate.md)
 - [`references/description-writing.md`](references/description-writing.md)
-- [`references/workflows.md`](references/workflows.md)
-- [`references/output-patterns.md`](references/output-patterns.md)
 
 ---
 
-## Reference skill
+## How to use this repo
 
-The repo includes a canonical reference skill that demonstrates the full pattern without making the reference skill a prerequisite for understanding the framework:
-
-- [`reference-skills/release-notes-generator/`](reference-skills/release-notes-generator/)
-- [`examples/release-notes-project/project.skill.md`](examples/release-notes-project/project.skill.md)
-
-What it shows:
-- a reusable global skill
-- a shipped `project.skill.md.template`
-- a project-local `project.skill.md`
-- one deterministic script
-- one paired test
-- one narrow self-healing script
-
-This reference skill is included as proof and calibration, not as a substitute for a strong root `SKILL.md`.
-
----
-
-## Dry-run result
-
-Using the revised `SKILL.md` and references as the only guidance, an agent can now get to a coherent operational skill without needing a scaffold generator. The main control-plane logic lives in `SKILL.md`; references provide deeper rules; scripts and tests provide proof.
-
----
-
-## Important philosophy
-
-This repo is intentionally **not** centered around a scaffold generator.
-
-The agent writing the skill should decide:
-- what files are actually needed
-- what belongs in the global skill
-- what belongs in project-local context
-- what is worth testing
-- whether self-healing is appropriate
-
-Templates and validation can help, but they should not replace judgment.
+1. Start with the root [`SKILL.md`](SKILL.md)
+2. Let it route you into the right references
+3. Add structure only when the problem earns it
+4. Validate what you ship
+5. Treat the reference skill as calibration, not a shortcut
 
 ---
 
 ## Contributing
 
-Contributions are welcome, especially improvements to:
-- skill structure guidance
-- `project.skill.md` patterns
-- testing guidance
-- worked examples
-- validation logic
+Contributions are welcome, especially around:
+- stronger operational patterns
+- sharper validation rules
+- better reference skills
+- better tests and safer self-healing strategies
+- cleaner project-local context patterns
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).
 
