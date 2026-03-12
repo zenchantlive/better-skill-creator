@@ -7,15 +7,53 @@ on:
     branches: [ main, master ]
 
 jobs:
-  validate:
+  validate-root-skill:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Validate repo skill structure
-        run: python scripts/quick_validate.py .
+      - name: Validate root skill structure
+        run: python3 scripts/quick_validate.py .
+
+  validate-reference-skill:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate canonical reference skill
+        run: python3 scripts/quick_validate.py reference-skills/release-notes-generator
+      - name: Run reference skill paired test
+        run: python3 reference-skills/release-notes-generator/tests/test_generate_release_notes.py
+
+  validate-project-workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run project-side generation workflow
+        working-directory: examples/release-notes-project
+        run: |
+          rm -f dist/release-notes.md
+          python3 ../../reference-skills/release-notes-generator/scripts/generate_release_notes.py data/release-input.json dist/release-notes.md
+          test -f dist/release-notes.md
+      - name: Verify self-healing flow
+        working-directory: examples/release-notes-project
+        run: |
+          rm -rf dist
+          set +e
+          python3 ../../reference-skills/release-notes-generator/scripts/generate_release_notes.py data/release-input.json dist/release-notes.md
+          status=$?
+          set -e
+          test "$status" -eq 2
+          python3 ../../reference-skills/release-notes-generator/self-healing/heal_output_dir.py dist
+          python3 ../../reference-skills/release-notes-generator/scripts/generate_release_notes.py data/release-input.json dist/release-notes.md
+          test -f dist/release-notes.md
 
   lint:
     runs-on: ubuntu-latest
@@ -27,4 +65,4 @@ jobs:
       - name: Install linter
         run: pip install ruff
       - name: Lint Python files
-        run: ruff check scripts/ --ignore E501
+        run: ruff check scripts/ reference-skills/ --ignore E501
