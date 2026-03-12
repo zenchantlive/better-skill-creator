@@ -3,7 +3,9 @@
 # Better Skill Creator
 
 **A framework for authoring better skills for AI agents**
+
 *Treating Agent Skills like Production Applications*
+
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.txt)
 [![GitHub release](https://img.shields.io/github/v/release/zenchantlive/better-skill-creator.svg)](https://github.com/zenchantlive/better-skill-creator/releases)
 [![GitHub issues](https://img.shields.io/github/issues/zenchantlive/better-skill-creator.svg)](https://github.com/zenchantlive/better-skill-creator/issues)
