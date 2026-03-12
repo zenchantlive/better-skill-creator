@@ -8,7 +8,6 @@
 [![GitHub release](https://img.shields.io/github/v/release/zenchantlive/better-skill-creator.svg)](https://github.com/zenchantlive/better-skill-creator/releases)
 [![GitHub issues](https://img.shields.io/github/issues/zenchantlive/better-skill-creator.svg)](https://github.com/zenchantlive/better-skill-creator/issues)
 
-Skills help agents do work. They are reusable operational guidance, references, and supporting resources — not something that "turns an agent into a skill."
 
 </div>
 
